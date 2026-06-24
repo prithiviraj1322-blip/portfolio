@@ -352,6 +352,7 @@ nav {
   border: 1px solid var(--border-light);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(184, 144, 71, 0.04);
   gap: 16px;
+  flex-wrap: nowrap;
 }
 
 .logo {
@@ -522,6 +523,7 @@ main {
   font-weight: 700;
   max-width: 100%;
   word-break: break-word;
+  text-align: center;
 }
 
 .hero-name {
@@ -532,14 +534,18 @@ main {
   letter-spacing: 0.5px;
   margin-bottom: 20px;
   word-break: break-word;
+  text-align: center;
+  width: 100%;
 }
 
 .hero-description {
   font-size: clamp(0.9rem, 2.5vw, 1.2rem);
   color: var(--text-secondary);
   max-width: 680px;
+  width: 100%;
   line-height: 1.7;
   margin-bottom: 36px;
+  text-align: center;
 }
 
 .hero-cta {
@@ -547,6 +553,7 @@ main {
   gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
@@ -1690,6 +1697,7 @@ footer {
   letter-spacing: 0.8px;
   font-size: 0.75rem;
   color: var(--text-muted);
+  width: 100%;
 }
 
 footer a {
@@ -1925,10 +1933,18 @@ footer a:hover { color: var(--color-primary); }
     padding: 10px 16px;
     flex-wrap: wrap;
     row-gap: 0;
+    align-items: center;
+  }
+
+  /* Logo + hamburger always on same row */
+  nav > .logo,
+  nav > .nav-hamburger {
+    flex-shrink: 0;
   }
 
   .nav-hamburger {
     display: flex;
+    margin-left: auto;
   }
 
   .nav-links {
@@ -1958,6 +1974,7 @@ footer a:hover { color: var(--color-primary); }
     width: 100%;
     display: block;
     border-bottom: none !important;
+    text-align: left;
   }
 
   .nav-links li.active a {
@@ -1983,6 +2000,7 @@ footer a:hover { color: var(--color-primary); }
     min-height: calc(100svh - 90px);
     padding: 40px 5% 50px;
     gap: 0;
+    align-items: center;
   }
 
   .hero-tagline {
@@ -1991,6 +2009,7 @@ footer a:hover { color: var(--color-primary); }
     padding: 6px 14px;
     margin-bottom: 18px;
     text-align: center;
+    align-self: center;
   }
 
   .hero-name {
@@ -1999,32 +2018,37 @@ footer a:hover { color: var(--color-primary); }
     letter-spacing: 0;
     word-break: break-word;
     hyphens: auto;
+    text-align: center;
   }
 
   .hero-description {
     font-size: 0.95rem;
     line-height: 1.65;
     margin-bottom: 28px;
-    padding: 0 4px;
+    padding: 0;
+    text-align: center;
   }
 
   .hero-cta {
     flex-direction: column;
     width: 100%;
     gap: 12px;
-    align-items: stretch;
+    align-items: center;
   }
 
   .btn-premium, .btn-secondary {
     width: 100%;
+    max-width: 360px;
     padding: 13px 20px;
     font-size: 0.8rem;
     letter-spacing: 0.8px;
+    justify-content: center;
   }
 
   /* ---- SECTION HEADERS ---- */
   .section-header {
     margin-bottom: 28px;
+    text-align: center;
   }
 
   .section-tag {
@@ -2065,6 +2089,11 @@ footer a:hover { color: var(--color-primary); }
   .project-card-title { font-size: 0.95rem; }
   .project-card-desc  { font-size: 0.85rem; }
 
+  .project-card-footer {
+    flex-direction: row;
+    align-items: center;
+  }
+
   /* ---- RESUME BANNER ---- */
   .resume-profile-banner {
     grid-template-columns: 1fr;
@@ -2077,6 +2106,11 @@ footer a:hover { color: var(--color-primary); }
     align-items: flex-start;
     gap: 16px;
     padding: 20px;
+  }
+
+  .profile-info {
+    min-width: 0;
+    flex: 1;
   }
 
   .profile-img-wrapper {
@@ -2124,12 +2158,18 @@ footer a:hover { color: var(--color-primary); }
 
   .contact-value {
     font-size: 0.78rem;
+    word-break: break-word;
   }
 
   /* ---- RESUME COLUMNS ---- */
   .resume-columns-grid {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .resume-main-timeline-col,
+  .resume-details-col {
+    width: 100%;
   }
 
   .resume-timeline-card,
@@ -2167,15 +2207,21 @@ footer a:hover { color: var(--color-primary); }
   }
 
   /* ---- MODAL ---- */
+  .modal-overlay {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
   .modal-card {
     grid-template-columns: 1fr;
-    max-height: 88svh;
+    max-height: 92svh;
     overflow-y: auto;
-    border-radius: 12px;
+    border-radius: 14px 14px 0 0;
+    width: 100%;
   }
 
   .modal-img-side {
-    height: 220px;
+    height: 200px;
   }
 
   .modal-info-side {
@@ -2195,6 +2241,8 @@ footer a:hover { color: var(--color-primary); }
   footer {
     flex-direction: column;
     text-align: center;
+    align-items: center;
+    justify-content: center;
     padding: 28px 5%;
     gap: 10px;
     font-size: 0.7rem;
@@ -2204,6 +2252,12 @@ footer a:hover { color: var(--color-primary); }
   .dashboard-container {
     padding: 28px 4%;
     gap: 24px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 
   .dashboard-grid {
@@ -2216,23 +2270,69 @@ footer a:hover { color: var(--color-primary); }
 
 /* --- SMALL MOBILE (≤480px) --- */
 @media (max-width: 480px) {
+  .page-section {
+    padding: 40px 4% 32px;
+  }
+
+  #home {
+    padding: 32px 4% 44px;
+  }
+
   .hero-name {
     font-size: clamp(1.8rem, 10vw, 2.4rem);
   }
 
+  .hero-description {
+    font-size: 0.9rem;
+  }
+
   .profile-banner-left {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
-    gap: 12px;
+    gap: 14px;
+    padding: 16px;
   }
 
   .profile-img-wrapper {
-    width: 64px;
-    height: 64px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-img-placeholder {
+    font-size: 1.4rem;
+  }
+
+  .profile-name {
+    font-size: 1.1rem;
+  }
+
+  .profile-bio {
+    font-size: 0.8rem;
+  }
+
+  .profile-banner-right {
+    padding: 14px 16px;
+  }
+
+  .contact-item-badge {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .contact-value {
+    font-size: 0.75rem;
+    word-break: break-all;
   }
 
   .hobbies-grid-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .hobby-card-item {
+    font-size: 0.6rem;
+    padding: 9px 8px;
+    gap: 7px;
   }
 
   .nav-links a { font-size: 0.85rem; }
@@ -2243,5 +2343,78 @@ footer a:hover { color: var(--color-primary); }
 
   .projects-showcase-grid {
     gap: 12px;
+  }
+
+  .resume-timeline-card,
+  .resume-details-card {
+    padding: 14px;
+  }
+
+  .timeline-item { padding-left: 14px; }
+
+  .dashboard-container {
+    padding: 20px 4%;
+  }
+
+  .uploader-card { padding: 16px; }
+
+  footer {
+    font-size: 0.65rem;
+    padding: 22px 4%;
+  }
+}
+
+/* --- VERY SMALL MOBILE (≤390px) --- */
+@media (max-width: 390px) {
+  nav {
+    padding: 8px 12px;
+  }
+
+  .logo { font-size: 1.1rem; }
+
+  .hero-tagline {
+    font-size: 0.6rem;
+    padding: 5px 10px;
+    letter-spacing: 0.8px;
+  }
+
+  .hero-name {
+    font-size: clamp(1.6rem, 11vw, 2.2rem);
+  }
+
+  .btn-premium,
+  .btn-secondary {
+    font-size: 0.75rem;
+    padding: 11px 16px;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .profile-banner-left {
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .profile-img-wrapper {
+    width: 52px;
+    height: 52px;
+  }
+
+  .profile-img-placeholder {
+    font-size: 1.2rem;
+  }
+
+  .profile-name {
+    font-size: 1rem;
+  }
+
+  .modal-card {
+    max-height: 96svh;
+  }
+
+  .resume-card-title {
+    font-size: 0.88rem;
   }
 }
