@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prithivi Raj S | Professional Portfolio</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Explore the professional portfolio of Prithivi Raj S. Featuring interactive 2D physics galleries, custom web apps, and data analytics.">
+  <meta name="keywords" content="Prithivi Raj S, Java, Python, SQL, Web Developer, Salem, Tamil Nadu, Portfolio">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient Glowing Backgrounds & Ashes -->
+  <div class="ambient-glows">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+  </div>
+  <div class="ambient-grid"></div>
+  
+  <!-- Volcanic Ember Particles -->
+  <div class="ember-container">
+    <div class="ember ember-1"></div>
+    <div class="ember ember-2"></div>
+    <div class="ember ember-3"></div>
+    <div class="ember ember-4"></div>
+    <div class="ember ember-5"></div>
+    <div class="ember ember-6"></div>
+    <div class="ember ember-7"></div>
+    <div class="ember ember-8"></div>
+    <div class="ember ember-9"></div>
+    <div class="ember ember-10"></div>
+  </div>
+
+  <!-- Custom Liquid Cursor -->
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="custom-cursor-ring" id="cursor-ring"></div>
+
+  <!-- Header Sticky Navigation -->
+  <header>
+    <nav class="glass-panel">
+      <a href="#home" class="logo text-gradient" id="nav-logo">
+        PRITHIVI<span class="logo-dot"></span>
+      </a>
+      <ul class="nav-links">
+        <li class="active" data-page="home"><a href="#home" id="link-home">Home</a></li>
+        <li data-page="gallery"><a href="#gallery" id="link-gallery">Achievements</a></li>
+        <li data-page="projects"><a href="#projects" id="link-projects">Projects</a></li>
+        <li data-page="about"><a href="#about" id="link-about">Resume</a></li>
+        <li data-page="dashboard" class="nav-forge-link"><a href="#dashboard" id="link-dashboard"><i class="fa-solid fa-hammer"></i> Forge</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main View Router -->
+  <main>
+
+    <!-- 1. HOME HERO SECTION -->
+    <section id="home" class="page-section">
+      <span class="hero-tagline"><i class="fa-solid fa-graduation-cap"></i> MSc Computer Science Graduate & Developer</span>
+      <h1 class="hero-name text-gradient">PRITHIVI RAJ S</h1>
+      <p class="hero-description">
+        A highly motivated full-stack developer and analyst specializing in Java, Python, and SQL databases. Experienced in data analytics, system design, and building high-performance interactive web applications.
+      </p>
+      <div class="hero-cta">
+        <a href="#gallery" class="btn-premium" id="hero-btn-gallery">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> View Achievements & Gallery
+        </a>
+        <a href="#about" class="btn-secondary" id="hero-btn-about">
+          View Resume <i class="fa-solid fa-file-invoice"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. INTERACTIVE ACHIEVEMENTS GALLERY -->
+    <section id="gallery" class="page-section">
+      <div class="section-header">
+        <span class="section-tag">Interactive Portfolio Ledger</span>
+        <h2 class="section-title">Achievements Showcase</h2>
+      </div>
+
+      <!-- Full-Width Floating Physics Canvas -->
+      <div class="floating-canvas-wrapper full-width-canvas-wrapper">
+        <!-- Control Panel Toggle -->
+        <button class="physics-control-toggle" id="control-toggle" title="Adjust Physics Settings">
+          <i class="fa-solid fa-sliders"></i>
+        </button>
+
+        <!-- Glass Control Panel -->
+        <div class="control-panel glass-panel" id="physics-panel">
+          <div class="control-title">
+            <span>Canvas Physics</span>
+          </div>
+          
+          <div class="control-group">
+            <label>Drift Speed: <span id="val-speed">1.0</span></label>
+            <input type="range" id="param-speed" min="0" max="4" step="0.1" value="1.0">
+          </div>
+          
+          <div class="control-group">
+            <label>Bounciness: <span id="val-bounce">0.8</span></label>
+            <input type="range" id="param-bounce" min="0.2" max="1.2" step="0.05" value="0.8">
+          </div>
+          
+          <div class="control-group">
+            <label>Friction: <span id="val-friction">0.98</span></label>
+            <input type="range" id="param-friction" min="0.9" max="1.0" step="0.01" value="0.98">
+          </div>
+
+          <div class="control-checkbox">
+            <input type="checkbox" id="param-collisions" checked>
+            <label for="param-collisions">Enable Collisions</label>
+          </div>
+
+          <div class="control-checkbox">
+            <input type="checkbox" id="param-gravity">
+            <label for="param-gravity">Apply Gravity</label>
+          </div>
+        </div>
+
+        <!-- Canvas Element -->
+        <div class="floating-canvas" id="canvas-container">
+          <!-- Floating cards will be rendered dynamically by JS -->
+        </div>
+
+        <div class="canvas-instructions">
+          Drag & Throw Cards &bull; Hover for 3D Parallax &bull; Double-Click to Inspect Details
+        </div>
+      </div>
+    </section>
+
+    <!-- Runic Divider between Achievements & Projects -->
+    <div class="runic-divider">
+      <div class="runic-line"></div>
+      <div class="runic-node"><i class="fa-solid fa-gem"></i></div>
+      <div class="runic-line"></div>
+    </div>
+
+    <!-- 2B. PROJECTS SHOWCASE SECTION -->
+    <section id="projects" class="page-section">
+      <div class="section-header">
+        <span class="section-tag">Artifacts of Conquest</span>
+        <h2 class="section-title">Projects Showcase</h2>
+      </div>
+
+      <div class="projects-showcase-grid" id="projects-grid">
+        <!-- Projects will be rendered dynamically here by JS -->
+      </div>
+    </section>
+
+    <!-- Runic Divider between Projects & Resume -->
+    <div class="runic-divider">
+      <div class="runic-line"></div>
+      <div class="runic-node"><i class="fa-solid fa-gem"></i></div>
+      <div class="runic-line"></div>
+    </div>
+
+    <!-- 3. RESUME SECTION -->
+    <section id="about" class="page-section">
+      <div class="section-header">
+        <span class="section-tag">Professional History</span>
+        <h2 class="section-title">Resume Overview</h2>
+      </div>
+
+      <!-- Premium Wide Profile Banner (Full Width) -->
+      <div class="glass-panel resume-profile-banner">
+        <div class="profile-banner-left">
+          <div class="profile-img-wrapper">
+            <div class="profile-img-placeholder">PR</div>
+          </div>
+          <div class="profile-info">
+            <h3 class="profile-name">Prithivi Raj S</h3>
+            <span class="profile-subtitle"><i class="fa-solid fa-code"></i> Full-Stack Developer & Analyst</span>
+            <p class="profile-bio">
+              A motivated individual eager to contribute to organizational success through dedication, attention to detail, and strong analytical capabilities. Adaptable and eager to grow in fast-paced software development environments, with a proven ability to lead academic project teams and resolve technical challenges.
+            </p>
+          </div>
+        </div>
+        <div class="profile-banner-right">
+          <h4 class="contact-header-title"><i class="fa-solid fa-paper-plane text-gradient"></i> Contact Nexus</h4>
+          <div class="profile-contact-grid">
+            <div class="contact-item-badge">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <span class="contact-label">Location</span>
+                <span class="contact-value">Salem, Tamil Nadu</span>
+              </div>
+            </div>
+            <div class="contact-item-badge">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <span class="contact-label">Phone</span>
+                <a href="tel:+918056561680" class="contact-value" id="contact-phone">+91 80565 61680</a>
+              </div>
+            </div>
+            <div class="contact-item-badge">
+              <i class="fa-solid fa-envelope"></i>
+              <div>
+                <span class="contact-label">Email</span>
+                <a href="mailto:prithivicr7pr7@gmail.com" class="contact-value" id="contact-email">prithivicr7pr7@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2-Column Balanced Grid -->
+      <div class="resume-columns-grid">
+        
+        <!-- Left Column: Timelines (Experience & Education) -->
+        <div class="resume-main-timeline-col">
+          
+          <!-- Experience Card -->
+          <div class="glass-panel resume-timeline-card">
+            <h3 class="resume-card-title"><i class="fa-solid fa-briefcase text-gradient"></i> Professional Experience</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-date">April 2026</div>
+                <h4 class="timeline-title">Java & SQL Instructor</h4>
+                <div class="timeline-subtitle">Independent Academic Initiative</div>
+                <p class="timeline-desc">Designed and executed a 15-day comprehensive programming course. Instructed students in core Java concepts, object-oriented design, and SQL relational databases.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">August 2025 - Ended March 2026</div>
+                <h4 class="timeline-title">Technical Employee</h4>
+                <div class="timeline-subtitle">Veetech</div>
+                <p class="timeline-desc">Contributed to technical operations, database maintenance, and team workflows, consistently meeting tasks throughout the contract period.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education Card -->
+          <div class="glass-panel resume-timeline-card">
+            <h3 class="resume-card-title"><i class="fa-solid fa-graduation-cap text-gradient"></i> Education Scroll</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-date">08-2024 - 04-2026</div>
+                <h4 class="timeline-title">MSc Computer Science</h4>
+                <div class="timeline-subtitle">Sona College of Arts and Science, Salem</div>
+                <p class="timeline-desc">Focusing on advanced algorithms, software development methodologies, database configurations, and analytical models.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">08-2021 - 04-2024</div>
+                <h4 class="timeline-title">BSc Computer Science</h4>
+                <div class="timeline-subtitle">Sona College of Arts and Science, Salem</div>
+                <p class="timeline-desc">CGPA: 7.9 | First Class with Distinction. Focused on core courses including data structures, search algorithms, and software development, building strong fundamentals in system design.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">11-2019 - 07-2021</div>
+                <h4 class="timeline-title">12th Grade (CBSE)</h4>
+                <div class="timeline-subtitle">Sri Vidya Mandir Hr Sec School, Salem</div>
+                <p class="timeline-desc">Academic focus on Physics, Chemistry, and Advanced Mathematics. Percentage: 64%</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Skills, Projects, Honors, Hobbies -->
+        <div class="resume-details-col">
+          
+          <!-- Skills Card -->
+          <div class="glass-panel resume-details-card">
+            <h3 class="resume-card-title"><i class="fa-solid fa-cubes text-gradient"></i> Core Expertise</h3>
+            
+            <div class="skills-cat-title">Programming Languages</div>
+            <div class="skills-list">
+              <div class="skill-chip">Java <span>(Skillful)</span></div>
+              <div class="skill-chip">Python <span>(Skillful)</span></div>
+              <div class="skill-chip">SQL <span>(Experienced)</span></div>
+            </div>
+
+            <div class="skills-cat-title">Web Technologies</div>
+            <div class="skills-list">
+              <div class="skill-chip">React.js <span>(Beginner)</span></div>
+              <div class="skill-chip">HTML5 / CSS3 <span>(Mastered)</span></div>
+              <div class="skill-chip">JavaScript (ES6) <span>(Experienced)</span></div>
+            </div>
+
+            <div class="skills-cat-title">Databases & Tools</div>
+            <div class="skills-list">
+              <div class="skill-chip">MySQL <span>(Beginner)</span></div>
+              <div class="skill-chip">MongoDB Atlas</div>
+              <div class="skill-chip">R Language</div>
+              <div class="skill-chip">RStudio</div>
+            </div>
+
+            <div class="skills-cat-title">Core Competencies</div>
+            <div class="skills-list">
+              <div class="skill-chip">Data Analytics</div>
+              <div class="skill-chip">Systems Design</div>
+              <div class="skill-chip">Backend Development</div>
+              <div class="skill-chip">Agile Methodologies</div>
+            </div>
+          </div>
+
+          <!-- Projects Card -->
+          <div class="glass-panel resume-details-card">
+            <h3 class="resume-card-title"><i class="fa-solid fa-laptop-code text-gradient"></i> Project Conquests</h3>
+            <div class="projects-vertical-list" id="resume-projects-list">
+              <!-- Projects will be dynamically populated here -->
+            </div>
+          </div>
+
+          <!-- Certifications Card -->
+          <div class="glass-panel resume-details-card">
+            <h3 class="resume-card-title"><i class="fa-solid fa-medal text-gradient"></i> Certifications</h3>
+            <div class="accolades-list">
+              <div class="accolade-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>TCS iON NQT-IT Secured Score (Jan 2026)</span>
+              </div>
+              <div class="accolade-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Python Beginner Certificate</span>
+              </div>
+              <div class="accolade-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Professional Internship: Completed at Squeens Software Private Limited</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hobbies Card -->
+          <div class="glass-panel resume-details-card">
+            <h3 class="resume-card-title"><i class="fa-solid fa-compass text-gradient"></i> Hobbies</h3>
+            <div class="hobbies-grid-layout">
+              <div class="hobby-card-item">
+                <div class="hobby-icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <span>AI & Midjourney</span>
+              </div>
+              <div class="hobby-card-item">
+                <div class="hobby-icon-box"><i class="fa-solid fa-code"></i></div>
+                <span>LeetCode Battles</span>
+              </div>
+              <div class="hobby-card-item">
+                <div class="hobby-icon-box"><i class="fa-solid fa-language"></i></div>
+                <span>Runic Language</span>
+              </div>
+              <div class="hobby-card-item">
+                <div class="hobby-icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                <span>Data Analytics</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 5. LIGHTBOX DETAIL MODAL -->
+  <div class="modal-overlay" id="lightbox-modal">
+    <button class="modal-close-btn" id="modal-close" title="Close Overlay"><i class="fa-solid fa-xmark"></i></button>
+    <div class="glass-panel modal-card">
+      <div class="modal-img-side">
+        <img src="" class="modal-img" id="modal-image-view" alt="Full view">
+      </div>
+      <div class="modal-info-side">
+        <div class="modal-meta">
+          <span class="modal-date" id="modal-date-text">Uploaded on: Jun 24, 2026</span>
+          <h3 class="modal-title" id="modal-title-text">Project Name</h3>
+          <p class="modal-desc" id="modal-desc-text">Detailed descriptions about design choices, aesthetic parameters, and interactive visual mechanics used to build this asset.</p>
+          <div class="modal-tags" id="modal-tags-container">
+            <!-- Tags will be dynamically injected -->
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" class="modal-action-btn-danger" id="modal-delete-btn">
+            <i class="fa-solid fa-trash-can"></i> Delete Certificate
+          </button>
+          <span class="bio-subtitle" style="font-size: 0.8rem; color: var(--text-muted);">
+            ID Ref: <span id="modal-ref-text">#0</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. CREATOR FORGE DASHBOARD (SPA View) -->
+  <div id="dashboard-view" class="dashboard-container" style="display: none;">
+    <div class="dashboard-header">
+      <div class="dashboard-title-area">
+        <span class="section-tag">Creator's Workshop</span>
+        <h2 class="dashboard-title"><i class="fa-solid fa-hammer"></i> Creator Forge</h2>
+      </div>
+      <button class="btn-premium" id="btn-close-dashboard">
+        <i class="fa-solid fa-arrow-left"></i> Return to Realm
+      </button>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Panel 1: Certificate Uploader -->
+      <div class="glass-panel upload-form uploader-card">
+        <h3 class="form-title"><i class="fa-solid fa-medal text-gradient"></i> Forge Certificate</h3>
+        
+        <!-- Drop Zone -->
+        <div class="drop-zone" id="upload-drop-zone">
+          <div id="drop-prompt">
+            <div class="drop-icon-wrapper">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <p class="drop-text-main">Drop certificate here</p>
+            <p class="drop-text-sub">or click to browse files</p>
+          </div>
+          
+          <input type="file" id="file-selector" class="file-input-hidden" accept="image/*">
+
+          <!-- Canvas Preview and Filters (hidden by default) -->
+          <div class="preview-container" id="preview-panel">
+            <div class="preview-canvas-wrapper">
+              <canvas id="preview-canvas"></canvas>
+            </div>
+            
+            <div class="filter-controls" id="filter-bar">
+              <button type="button" class="filter-btn active" data-filter="normal">Normal</button>
+              <button type="button" class="filter-btn" data-filter="grayscale">B&W</button>
+              <button type="button" class="filter-btn" data-filter="sepia">Vintage</button>
+              <button type="button" class="filter-btn" data-filter="warm">Warm</button>
+              <button type="button" class="filter-btn" data-filter="cool">Cool</button>
+              <button type="button" class="filter-btn" data-filter="hue">Magic</button>
+            </div>
+
+            <div class="preview-actions">
+              <button type="button" class="btn-secondary" id="btn-cancel-preview" style="padding: 10px 16px; font-size: 0.8rem;">
+                <i class="fa-solid fa-trash-can"></i> Discard
+              </button>
+              <span style="font-size: 0.75rem; color: var(--color-accent); font-weight: 600;">
+                <i class="fa-solid fa-circle-nodes"></i> Auto-sized
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form inputs -->
+        <form id="portfolio-upload-form">
+          <div class="form-group">
+            <label for="upload-title">Certificate Title</label>
+            <input type="text" id="upload-title" placeholder="Give certificate a title..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="upload-desc">Description</label>
+            <textarea id="upload-desc" rows="2" placeholder="Describe the topics and certification skills..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="upload-tags">Tags (comma separated)</label>
+            <input type="text" id="upload-tags" placeholder="e.g. Python, SQL, React">
+          </div>
+
+          <div class="form-group">
+            <label>Glowing Aura Color</label>
+            <div class="color-picker-grid">
+              <button type="button" class="color-option active" style="--option-color: #b91c1c;" data-color="#b91c1c" data-rgb="185, 28, 28" title="Crimson Red"></button>
+              <button type="button" class="color-option" style="--option-color: #06b6d4;" data-color="#06b6d4" data-rgb="6, 182, 212" title="Electric Cyan"></button>
+              <button type="button" class="color-option" style="--option-color: #b89047;" data-color="#b89047" data-rgb="184, 144, 71" title="Runic Gold"></button>
+              <button type="button" class="color-option" style="--option-color: #10b981;" data-color="#10b981" data-rgb="16, 185, 129" title="Forest Emerald"></button>
+              <button type="button" class="color-option" style="--option-color: #a855f7;" data-color="#a855f7" data-rgb="168, 85, 247" title="Royal Purple"></button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-premium" style="width: 100%; justify-content: center; padding: 12px 24px; font-size: 0.8rem;" id="btn-submit-upload">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Add Certificate
+          </button>
+        </form>
+      </div>
+
+      <!-- Panel 2: Project Creator -->
+      <div class="glass-panel upload-form uploader-card">
+        <h3 class="form-title"><i class="fa-solid fa-laptop-code text-gradient"></i> Forge Project</h3>
+        
+        <form id="project-upload-form">
+          <div class="form-group">
+            <label for="project-title">Project Title</label>
+            <input type="text" id="project-title" placeholder="Give project a name..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="project-date">Timeline Date</label>
+            <input type="text" id="project-date" placeholder="e.g. August 2025 - Present" required>
+          </div>
+
+          <div class="form-group">
+            <label for="project-techs-input">Technologies (comma separated)</label>
+            <input type="text" id="project-techs-input" placeholder="e.g. React.js, Node.js, Razorpay" required>
+          </div>
+
+          <div class="form-group">
+            <label for="project-desc">Description</label>
+            <textarea id="project-desc" rows="3" placeholder="Detail the architecture, database configurations, and optimization latency..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="project-link">Project Link / Repo URL</label>
+            <input type="url" id="project-link" placeholder="https://github.com/..." required>
+          </div>
+
+          <div class="form-group">
+            <label>Glowing Accent Color</label>
+            <div class="color-picker-grid" id="project-color-picker">
+              <button type="button" class="color-option active" style="--option-color: #06b6d4;" data-color="#06b6d4" data-rgb="6, 182, 212" title="Leviathan Cyan"></button>
+              <button type="button" class="color-option" style="--option-color: #b91c1c;" data-color="#b91c1c" data-rgb="185, 28, 28" title="Blades Red"></button>
+              <button type="button" class="color-option" style="--option-color: #b89047;" data-color="#b89047" data-rgb="184, 144, 71" title="Valkyrie Gold"></button>
+              <button type="button" class="color-option" style="--option-color: #10b981;" data-color="#10b981" data-rgb="16, 185, 129" title="Forest Emerald"></button>
+              <button type="button" class="color-option" style="--option-color: #a855f7;" data-color="#a855f7" data-rgb="168, 85, 247" title="Royal Purple"></button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-premium" style="width: 100%; justify-content: center; padding: 12px 24px; font-size: 0.8rem;" id="btn-submit-project">
+            <i class="fa-solid fa-circle-plus"></i> Add Project
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>&copy; 2026 Prithivi Raj S. All Rights Reserved.</div>
+    <div>
+      <a href="mailto:prithivicr7pr7@gmail.com" id="footer-contact">Get in Touch</a> &bull;
+      <a href="#gallery" id="footer-gallery">Achievements Ledger</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="floating-engine.js?v=20"></script>
+  <script src="scripts.js?v=20"></script>
+</body>
+</html>

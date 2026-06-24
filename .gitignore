@@ -1,0 +1,9 @@
+# Ignore portable Git binary directory
+.git-bin/
+
+# Ignore zip downloads
+*.zip
+
+# Ignore local OS metadata/caches
+Thumbs.db
+.DS_Store
