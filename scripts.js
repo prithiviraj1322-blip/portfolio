@@ -850,6 +850,37 @@ function initPhysicsControls() {
   });
 }
 
+// --- HAMBURGER MENU (MOBILE NAV) ---
+function initHamburgerMenu() {
+  const hamburger = document.getElementById('nav-hamburger');
+  const navList = document.getElementById('nav-links-list');
+  if (!hamburger || !navList) return;
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = navList.classList.toggle('mobile-open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen.toString());
+  });
+
+  // Close mobile nav when any nav link is clicked
+  navList.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navList.classList.remove('mobile-open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close nav when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('nav')) {
+      navList.classList.remove('mobile-open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
 // --- MAIN RUNTIME INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
   // Load LocalStorage and default states
@@ -888,4 +919,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set lightbox close triggers
   initLightboxEvents();
+
+  // Initialize hamburger nav for mobile
+  initHamburgerMenu();
 });
