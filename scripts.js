@@ -259,12 +259,89 @@ function initScrollNavigation() {
 
 // --- PHYSICS GALLERY RENDERER ---
 function loadGalleryCards() {
-  if (window.floatingEngine) {
-    window.floatingEngine.clear();
-    portfolioState.artworks.forEach(item => {
-      window.floatingEngine.addCard(item, openLightbox);
-    });
+  const isMobile = window.innerWidth <= 768;
+
+  if (!isMobile) {
+    // Desktop: use physics canvas
+    if (window.floatingEngine) {
+      window.floatingEngine.clear();
+      portfolioState.artworks.forEach(item => {
+        window.floatingEngine.addCard(item, openLightbox);
+      });
+    }
+  } else {
+    // Mobile: build simple grid instead
+    buildMobileCertGrid();
   }
+}
+
+// --- MOBILE CERTIFICATE GRID ---
+function buildMobileCertGrid() {
+  let grid = document.getElementById('mobile-cert-grid');
+  if (!grid) {
+    grid = document.createElement('div');
+    grid.id = 'mobile-cert-grid';
+    grid.className = 'mobile-cert-grid';
+    const canvasWrapper = document.querySelector('.floating-canvas-wrapper');
+    if (canvasWrapper && canvasWrapper.parentNode) {
+      canvasWrapper.parentNode.insertBefore(grid, canvasWrapper.nextSibling);
+    }
+  }
+
+  grid.innerHTML = '';
+
+  portfolioState.artworks.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'mobile-cert-card';
+    card.style.setProperty('--glow-color', item.glowColor || 'var(--color-primary)');
+
+    const imgDiv = document.createElement('div');
+    imgDiv.className = 'mobile-cert-img';
+
+    if (item.url && item.url !== '') {
+      const img = document.createElement('img');
+      img.src = item.url;
+      img.alt = item.title;
+      img.loading = 'lazy';
+      img.onerror = () => { imgDiv.innerHTML = `<div class="mobile-cert-img-placeholder"><i class="fa-solid fa-medal"></i></div>`; };
+      imgDiv.appendChild(img);
+    } else {
+      imgDiv.innerHTML = `<div class="mobile-cert-img-placeholder"><i class="fa-solid fa-medal"></i></div>`;
+    }
+
+    const body = document.createElement('div');
+    body.className = 'mobile-cert-body';
+
+    const title = document.createElement('div');
+    title.className = 'mobile-cert-title';
+    title.textContent = item.title;
+
+    const desc = document.createElement('div');
+    desc.className = 'mobile-cert-desc';
+    desc.textContent = item.description;
+
+    const tagsRow = document.createElement('div');
+    tagsRow.className = 'mobile-cert-tags';
+    if (item.tags) {
+      item.tags.forEach(tag => {
+        const t = document.createElement('span');
+        t.className = 'mobile-cert-tag';
+        t.textContent = tag;
+        tagsRow.appendChild(t);
+      });
+    }
+
+    body.appendChild(title);
+    body.appendChild(desc);
+    body.appendChild(tagsRow);
+    card.appendChild(imgDiv);
+    card.appendChild(body);
+
+    // Clicking a card opens the lightbox
+    card.addEventListener('click', () => openLightbox(item));
+
+    grid.appendChild(card);
+  });
 }
 
 // --- LIGHTBOX INTERACTIVE DETAILS MODAL ---
@@ -856,7 +933,8 @@ function initHamburgerMenu() {
   const navList = document.getElementById('nav-links-list');
   if (!hamburger || !navList) return;
 
-  hamburger.addEventListener('click', () => {
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
     const isOpen = navList.classList.toggle('mobile-open');
     hamburger.classList.toggle('open', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen.toString());
@@ -886,21 +964,47 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load LocalStorage and default states
   initializeState();
 
-  // Load custom magnetic tracking cursor
+  // Load custom magnetic tracking cursor (desktop only)
   initCustomCursor();
 
-  // Run the physics canvas engine
-  if (typeof window.floatingEngine === 'undefined' && typeof window.FloatingEngine !== 'undefined') {
-    window.floatingEngine = new window.FloatingEngine();
-  }
-  if (window.floatingEngine && typeof window.floatingEngine.init === 'function') {
-    window.floatingEngine.init('canvas-container');
-  } else {
-    console.error("FloatingEngine is not initialized properly.");
+  const isMobile = window.innerWidth <= 768;
+
+  // Run the physics canvas engine only on desktop
+  if (!isMobile) {
+    if (typeof window.floatingEngine === 'undefined' && typeof window.FloatingEngine !== 'undefined') {
+      window.floatingEngine = new window.FloatingEngine();
+    }
+    if (window.floatingEngine && typeof window.floatingEngine.init === 'function') {
+      window.floatingEngine.init('canvas-container');
+    } else {
+      console.error('FloatingEngine is not initialized properly.');
+    }
   }
 
-  // Populate floating elements in canvas
+  // Populate gallery (canvas on desktop, grid on mobile)
   loadGalleryCards();
+
+  // Rebuild on window resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const nowMobile = window.innerWidth <= 768;
+      const grid = document.getElementById('mobile-cert-grid');
+      if (nowMobile) {
+        buildMobileCertGrid();
+      } else {
+        if (grid) grid.innerHTML = '';
+        if (window.floatingEngine) {
+          if (typeof window.floatingEngine.init === 'function' && !window.floatingEngine.container) {
+            window.floatingEngine.init('canvas-container');
+          }
+          window.floatingEngine.clear();
+          portfolioState.artworks.forEach(item => window.floatingEngine.addCard(item, openLightbox));
+        }
+      }
+    }, 300);
+  });
 
   // Populate projects list dynamically
   loadProjects();
